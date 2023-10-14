@@ -1,0 +1,75 @@
+The function pig takes a string as input and converts it to an integer. The function assumes that the input string contains only decimal digits and an optional leading minus sign. The function returns the integer value of the input string. If the input string is empty, the function returns 0.
+
+The function works by iterating over each character of the input string until it encounters the null character '\0' which marks the end of the string. At each iteration, it multiplies the current integer value by 10 and adds the value of the current character converted to an integer using ASCII code arithmetic. If the first character of the string is a minus sign, it is converted to a negative value.
+
+Here's a step-by-step example of how the function converts the input string "12345" to the integer 12345:
+
+    The first character of the string is '1'. The ASCII code for '1' is 49 (0x31 in hex), so the initial integer value is 1 - 0x30 = 1.
+    The second character of the string is '2'. The ASCII code for '2' is 50 (0x32 in hex), so the updated integer value is 1 * 10 + 2 - 0x30 = 12.
+    The third character of the string is '3'. The ASCII code for '3' is 51 (0x33 in hex), so the updated integer value is 12 * 10 + 3 - 0x30 = 123.
+    The fourth character of the string is '4'. The ASCII code for '4' is 52 (0x34 in hex), so the updated integer value is 123 * 10 + 4 - 0x30 = 1234.
+    The fifth and final character of the string is '5'. The ASCII code for '5' is 53 (0x35 in hex), so the updated integer value is 1234 * 10 + 5 - 0x30 = 12345.
+
+The final integer value of 12345 is then returned by the function.
+
+
+
+
+
+
+
+
+
+
+
+
+int pig(char *arg){
+	
+	char kar = arg;
+	int num;
+	
+	if (kar =='\0'){
+		num = 0;
+	} else {
+		num = 0;
+		while (kar != '\0'){
+		
+			num = kar - 0x30 + num * 10;
+			arg = arg + 1;
+			kar = arg;
+		
+		} // end-of-while
+	} // end-of-else
+	
+	return num;
+}
+
+
+	
+// 0xffff60001 == 68 718 821 377
+// 7919 * 8672113
+
+int main(int argc, char * argv[]){
+
+	unsigned int arg1, arg2;
+	arg1 = argv[1]; arg2 = argv[2];
+	
+	if (argc < 2) exit(-1);
+		
+	unsigned int a = pig(arg1);
+	unsigned int b = pig(arg2);
+	
+	if (  ( (1 < (ulong)uVar1) && (1 < (ulong)uVar2)) && 
+	((ulong)uVar1 * (ulong)uVar2 == 0xffff60001) )
+	{
+	
+	puts("Yay");
+
+	}
+
+	return 0;
+}
+
+
+
+

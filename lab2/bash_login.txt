@@ -1,0 +1,13 @@
+Entry Point addr: 0x8048450
++0xb9 // decimal 185
+
+0xb4 // decimal 180
+
+
+ 8048629:       eb 05                   jmp    8048630 <main+0xb9>
+ 
+ Changed eb 05 -> eb 00
+ 
+ So it jumped to main + 180 as long as the first condition is met,
+ which seems to need a number greater than 0x63
+ input: 323232

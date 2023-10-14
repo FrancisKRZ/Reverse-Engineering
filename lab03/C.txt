@@ -1,0 +1,123 @@
+import sys
+
+def main(param_1, param_2):
+    if param_1 < 2:
+        sys.exit(-1)
+    
+    cVar1 = ord('T')  # convert the character 'T' to its ASCII value
+    pcVar2 = bytes.fromhex(hex(param_2 + 8)[2:])  # convert param_2 + 8 to a byte string
+    pcVar3 = b"ThePassword"
+    i = 0
+    while i < len(pcVar3):
+        if pcVar2[i] != chr((cVar1 * 7) + ((cVar1 * 7) // 0x19) * -0x19 + ord('a')):
+            return -1
+        cVar1 = ord(pcVar3[i + 1])
+        i += 1
+    print("Yay")
+    return 0
+
+if __name__ == "__main__":
+    main(len(sys.argv), int(sys.argv[1], 16))
+    
+    
+    
+ --------------------
+ 
+ 
+int main(int argc, char *argv[]){
+
+  char cVar1;
+  char *pcVar2;
+  char *pcVar3;
+  
+  if (argc < 2) {
+    exit(-1);
+  }
+  
+  cVar1 = 'T';
+  pcVar2 = argv[1];
+  pcVar3 = "ThePassword";
+  
+  
+  /*
+
+ (   (char)(cVar1 * 7) + 
+     (char)((cVar1 * 7) / 0x19) 
+     
+     * -0x19 + 'a')
+
+	== 
+ 
+ 
+(c * 7) - (c * 7 / 25) * 25 + 97 
+  
+  
+  '84  104  101  80  97  115  115  119  111  114  100'
+  
+  '55 
+  
+  55 56 56 54 55 61 61 63 59 62 55
+
+  '
+   788679==?;>7
+
+  '
+  
+  
+  AQUI
+  
+  cVar * 7
+ + -(cVar * 7)
+ + 97 
+  
+  
+  (cVar1 * 7) - (cVar1 * 7) + 97
+  
+  ( (password[i] * 7 - ( (password[i] * 7) / 25) ) + 'a'  
+  
+  
+ -----------------------------------
+  
+   python3 -c 'import sys; sys.stdout.buffer.write(b"\x88\x99\xaa\xbb\xcc\xdd\xee\xff")' | ./odd-password
+  
+  ---// (c * 7) - (c * 7 / 25) * 25 + 97 //---
+  
+  Iterations
+  1: n
+  2: 
+  3:
+  4:
+  5:
+  6:
+  7:
+  8:
+  9:
+ 10:
+
+  -43 -40 -40 -45 -43 -33 -33 -31 -36 -32 -43
+
+  
+  (number * 14) + 49
+  */
+  
+  
+  do {
+    	if ( *pcVar2 != (char) (
+    	(char)(cVar1 * 7) + (char)((cVar1 * 7) / 0x19) 
+    	* -0x19 + 'a')) 
+    	{
+    		return -1;
+    	}
+    
+    cVar1 = pcVar3[1];
+    pcVar3 = pcVar3 + 1;
+    pcVar2 = pcVar2 + 1;
+  
+  } while (cVar1 != '\0');
+  
+  
+  puts("Yay");
+  return 0;
+}
+
+
